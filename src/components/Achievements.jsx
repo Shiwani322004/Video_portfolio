@@ -56,7 +56,7 @@ const TagCard = ({ number, title, text, className, aosDelay, aosType, pathLength
   );
 };
 
-const Expertise = () => {
+const Achievements = () => {
   const containerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -68,7 +68,7 @@ const Expertise = () => {
 
   return (
     <section
-      id="expertise"
+      id="achievements"
       ref={containerRef}
       className="bg-white pt-24 pb-32 px-6 md:px-12 w-full relative overflow-hidden font-sans bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:80px_80px]"
     >
@@ -77,10 +77,10 @@ const Expertise = () => {
         {/* Header Content */}
         <div data-aos="fade-up" className="md:absolute top-10 left-0 md:w-[450px] z-20 mb-16 md:mb-0">
           <div className="inline-block border border-gray-300 rounded-full px-5 py-1.5 text-sm text-gray-600 font-bold mb-8 shadow-sm bg-white">
-            My Expertise
+            My Achievements
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.1] mb-6 tracking-tight relative">
-            Building Modern Digital Solutions with Code & AI
+            Milestones & Certifications
             {/* Hand-drawn arrow */}
             <svg className="absolute -bottom-10 right-10 w-12 h-12 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" className="hidden" />
@@ -88,7 +88,7 @@ const Expertise = () => {
             </svg>
           </h2>
           <p className="text-gray-500 text-base md:text-lg max-w-sm font-medium leading-relaxed">
-            Combining full-stack development, artificial intelligence, and cloud technologies to create scalable and impactful digital experiences.
+            Recognitions and certifications I have earned during my academic and professional journey.
           </p>
         </div>
 
@@ -169,9 +169,9 @@ const Expertise = () => {
         <div className="flex flex-col gap-8 md:gap-12 items-center md:block relative z-10 w-full pt-4 md:pt-0 pb-12 md:pb-0">
 
           <TagCard
-            number="01"
-            title="Frontend Development"
-            text="Crafting responsive and interactive user interfaces using React, JavaScript, Tailwind CSS, and modern frontend technologies to deliver seamless user experiences."
+            number="Jul '26"
+            title="Academic Excellence"
+            text="Secured academic excellence award during academic session, reflecting strong academic performance."
             className="md:absolute md:top-[10px] md:right-[5%] lg:right-[10%] rotate-2 md:rotate-6"
             aosType="fade-left"
             aosDelay="100"
@@ -179,9 +179,9 @@ const Expertise = () => {
             containerRef={containerRef}
           />
           <TagCard
-            number="02"
-            title="Backend Development"
-            text="Building secure REST APIs, authentication systems, server-side applications, and database integrations with scalable architectures."
+            number="Sept '25"
+            title="AI-Trip Planner, Hackathon"
+            text="Runner-up in Software App Exhibition by developing an AI-powered trip planner app that helps users customise travel plans efficiently."
             className="md:absolute md:top-[450px] md:left-[5%] lg:left-[10%] -rotate-2 md:-rotate-6"
             aosType="fade-right"
             aosDelay="200"
@@ -190,9 +190,9 @@ const Expertise = () => {
           />
 
           <TagCard
-            number="03"
-            title="AI & Machine Learning"
-            text="Developing intelligent applications using NLP, Generative AI, Computer Vision, LLMs, and data-driven machine learning solutions." className="md:absolute md:top-[700px] md:right-[5%] lg:right-[15%] rotate-1 md:rotate-3"
+            number="Aug '25"
+            title="Tech-Debate Winner"
+            text="Winner for topics including 'Is work from home culture beneficial for the tech industry' and 'Social media - a boon or a bane'." className="md:absolute md:top-[700px] md:right-[5%] lg:right-[15%] rotate-1 md:rotate-3"
             aosType="fade-left"
             aosDelay="300"
             pathLength={pathLength}
@@ -200,9 +200,9 @@ const Expertise = () => {
           />
 
           <TagCard
-            number="04"
-            title="Cloud & Deployment"
-            text="Deploying and managing applications using Docker, GitHub Actions, CI/CD pipelines, cloud platforms, and performance optimization practices."
+            number="May '24"
+            title="Innova-thon Competition"
+            text="First runner-up in Innova-thon Competition by developing an innovative solution prototype (Kheti App) addressing real-world agricultural challenges."
             className="md:absolute md:top-[1050px] md:left-[15%] lg:left-[25%] -rotate-1 md:-rotate-3"
             aosType="fade-right"
             aosDelay="400"
@@ -226,4 +226,4 @@ const Expertise = () => {
   );
 };
 
-export default Expertise;
+export default Achievements;

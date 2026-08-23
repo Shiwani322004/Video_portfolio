@@ -1,9 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useSpring, useMotionValueEvent } from 'framer-motion';
+import gravityThumbnail from '../assets/hero video/gravity.png';
+import simulatorThumbnail from '../assets/hero video/simulator.png';
+import collectorHubThumbnail from '../assets/hero video/collectorshub.png';
 
-const TagCard = ({ number, title, text, className, aosDelay, aosType, pathLength, containerRef }) => {
+const TagCard = ({ number, title, text, className, aosDelay, aosType, pathLength, containerRef, thumbnail, projectUrl }) => {
   const ref = useRef(null);
   const [isActive, setIsActive] = useState(false);
+  const hasLink = Boolean(projectUrl);
+  const linkHref = hasLink ? projectUrl : '#';
 
   useMotionValueEvent(pathLength, "change", (latest) => {
     if (!ref.current || !containerRef.current) return;
@@ -41,6 +46,29 @@ const TagCard = ({ number, title, text, className, aosDelay, aosType, pathLength
       {/* Inner container */}
       <div className={`w-full h-full rounded-[1.5rem] mt-8 p-8 flex flex-col min-h-[220px] transition-colors duration-700 ${isActive ? 'bg-emerald-700/50' : 'bg-[#f4f4f4]'
         }`}>
+
+        {/* Clickable Thumbnail */}
+        {thumbnail && (
+          <a
+            href={linkHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`group/thumb relative block w-full aspect-video rounded-xl overflow-hidden mb-4 border transition-all duration-500 ${isActive ? 'border-emerald-300/50' : 'border-gray-200'} hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.35)] ${hasLink ? 'cursor-pointer' : 'pointer-events-none'}`}
+          >
+            <img
+              src={thumbnail}
+              alt={`${title} thumbnail`}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover/thumb:scale-105"
+            />
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-black/0 group-hover/thumb:bg-black/40 transition-colors duration-300 flex items-center justify-center">
+              <span className="opacity-0 group-hover/thumb:opacity-100 translate-y-1 group-hover/thumb:translate-y-0 transition-all duration-300 text-white text-xs font-bold tracking-wide bg-emerald-500/90 px-3 py-1.5 rounded-full shadow-lg">
+                Visit Project ↗
+              </span>
+            </div>
+          </a>
+        )}
+
         <span className={`text-xl font-bold mb-2 font-serif italic transition-colors duration-700 ${isActive ? 'text-emerald-200' : 'text-gray-400'
           }`}>{number}</span>
 
@@ -56,7 +84,7 @@ const TagCard = ({ number, title, text, className, aosDelay, aosType, pathLength
   );
 };
 
-const Expertise = () => {
+const Projects = () => {
   const containerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -68,7 +96,7 @@ const Expertise = () => {
 
   return (
     <section
-      id="expertise"
+      id="projects"
       ref={containerRef}
       className="bg-white pt-24 pb-32 px-6 md:px-12 w-full relative overflow-hidden font-sans bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:80px_80px]"
     >
@@ -77,10 +105,10 @@ const Expertise = () => {
         {/* Header Content */}
         <div data-aos="fade-up" className="md:absolute top-10 left-0 md:w-[450px] z-20 mb-16 md:mb-0">
           <div className="inline-block border border-gray-300 rounded-full px-5 py-1.5 text-sm text-gray-600 font-bold mb-8 shadow-sm bg-white">
-            My Expertise
+            My Projects
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.1] mb-6 tracking-tight relative">
-            Building Modern Digital Solutions with Code & AI
+            Showcasing My Work
             {/* Hand-drawn arrow */}
             <svg className="absolute -bottom-10 right-10 w-12 h-12 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" className="hidden" />
@@ -88,7 +116,7 @@ const Expertise = () => {
             </svg>
           </h2>
           <p className="text-gray-500 text-base md:text-lg max-w-sm font-medium leading-relaxed">
-            Combining full-stack development, artificial intelligence, and cloud technologies to create scalable and impactful digital experiences.
+            A selection of projects that demonstrate my skills in frontend development, AI integration, and problem-solving.
           </p>
         </div>
 
@@ -169,55 +197,44 @@ const Expertise = () => {
         <div className="flex flex-col gap-8 md:gap-12 items-center md:block relative z-10 w-full pt-4 md:pt-0 pb-12 md:pb-0">
 
           <TagCard
-            number="01"
-            title="Frontend Development"
-            text="Crafting responsive and interactive user interfaces using React, JavaScript, Tailwind CSS, and modern frontend technologies to deliver seamless user experiences."
+            number="Project 1"
+            title="Commercial Enterprise Web Applications"
+            text="Architected a fully responsive multi-page web application with modular UI components, SSR/SSG performance optimisations, and API integration. Stack: Next.js, React.js, Tailwind CSS, MongoDB, Node.js."
             className="md:absolute md:top-[10px] md:right-[5%] lg:right-[10%] rotate-2 md:rotate-6"
             aosType="fade-left"
             aosDelay="100"
             pathLength={pathLength}
             containerRef={containerRef}
+            thumbnail={gravityThumbnail}
+            projectUrl="https://gravity-opal.vercel.app/"
           />
           <TagCard
-            number="02"
-            title="Backend Development"
-            text="Building secure REST APIs, authentication systems, server-side applications, and database integrations with scalable architectures."
+            number="Project 2"
+            title="Virtual Simulator on Dairy Lab Experiment"
+            text="Built an interactive virtual lab simulator combining custom graphics with Agentic AI and prompt engineering to streamline logic. Stack: HTML, CSS, Javascript, Adobe Illustrator, Agentic AI, LLMs."
             className="md:absolute md:top-[450px] md:left-[5%] lg:left-[10%] -rotate-2 md:-rotate-6"
             aosType="fade-right"
             aosDelay="200"
             pathLength={pathLength}
             containerRef={containerRef}
+            thumbnail={simulatorThumbnail}
+            projectUrl="https://quality-testing-ghee.vercel.app/"
           />
-
           <TagCard
-            number="03"
-            title="AI & Machine Learning"
-            text="Developing intelligent applications using NLP, Generative AI, Computer Vision, LLMs, and data-driven machine learning solutions." className="md:absolute md:top-[700px] md:right-[5%] lg:right-[15%] rotate-1 md:rotate-3"
+            number="Project 3"
+            title="Collectors Hub"
+            text="A responsive marketplace and community platform for collectors to discover, trade, showcase, and manage their collections — with wishlist, search & filtering, and a community feed. Stack: React.js, TypeScript, Tailwind CSS, React Router, REST APIs."
+            className="md:absolute md:top-[820px] md:right-[5%] lg:right-[10%] rotate-2 md:rotate-6"
             aosType="fade-left"
             aosDelay="300"
             pathLength={pathLength}
             containerRef={containerRef}
-          />
-
-          <TagCard
-            number="04"
-            title="Cloud & Deployment"
-            text="Deploying and managing applications using Docker, GitHub Actions, CI/CD pipelines, cloud platforms, and performance optimization practices."
-            className="md:absolute md:top-[1050px] md:left-[15%] lg:left-[25%] -rotate-1 md:-rotate-3"
-            aosType="fade-right"
-            aosDelay="400"
-            pathLength={pathLength}
-            containerRef={containerRef}
+            thumbnail={collectorHubThumbnail}
+            projectUrl="https://collectors-hub-snowy.vercel.app/"
           />
 
           {/* Hand-drawn end text */}
-          <div
-            data-aos="fade-in"
-            data-aos-delay="600"
-            className="hidden md:block absolute top-[1250px] left-[60%] font-['Caveat',cursive] text-3xl text-gray-600 rotate-6"
-          >
-            Turning ideas into reality!
-          </div>
+         
 
         </div>
 
@@ -226,4 +243,4 @@ const Expertise = () => {
   );
 };
 
-export default Expertise;
+export default Projects;
